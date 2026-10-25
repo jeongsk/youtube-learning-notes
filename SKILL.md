@@ -79,6 +79,7 @@ stdout으로 결과 JSON을 낸다 — `title`, `channel`, `duration`, `video`(m
 
 - 파일명은 `<영상ID>.mp4`, `<영상ID>.ko.srt`처럼 **영상 ID로 고정**한다. 제목에 섞인 한글·이모지·`/ : |` 때문에 Windows에서 저장이 실패하거나 셸 인용이 깨지는 문제를 피한다.
 - 자막 언어 기본값은 `ko,en`. 다른 언어가 필요하면 `--langs ja,en`처럼 바꾼다.
+- 영어 영상인데 `ko` 자막이 함께 받아졌다면 YouTube의 기계 번역 자막일 수 있다. 내용 판단·인용은 **영상 원어 자막**(이 경우 `en`)을 기준으로 한다.
 - 연령 제한·"봇이 아닌지 확인" 오류면 `--cookies-from-browser chrome`(firefox, safari, edge…)을 붙인다.
 - 영상 없이 자막만 필요하면 `--subs-only` (스크린샷 없는 노트가 된다).
 - 그 밖의 yt-dlp 옵션은 `--` 뒤에 붙이면 그대로 전달된다.

@@ -68,7 +68,7 @@ git clone https://github.com/jeongsk/youtube-learning-notes ~/.agents/skills/you
 ### Claude.ai (웹·데스크톱 앱)
 
 [최신 릴리스의 `youtube-learning-notes.zip`](https://github.com/jeongsk/youtube-learning-notes/releases/latest/download/youtube-learning-notes.zip)을 받아
-**Settings → Capabilities → Skills**에서 업로드합니다. 단, 이 환경의 샌드박스는 YouTube 접속이 막혀 있는 경우가 많습니다.
+설정의 Skills 메뉴(예: **Settings → Capabilities → Skills**)에서 업로드합니다. 메뉴 위치는 앱 버전에 따라 다를 수 있습니다. 단, 이 환경의 샌드박스는 YouTube 접속이 막혀 있는 경우가 많습니다.
 그럴 때 스킬은 다운로드 명령을 안내하고, 사용자가 자신의 PC에서 받은 mp4·srt를 업로드하면 이어서 노트를 만듭니다.
 
 ## 사용법

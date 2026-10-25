@@ -81,8 +81,8 @@ def main() -> int:
     ap.add_argument("--cookies-from-browser", metavar="BROWSER", help="chrome, firefox, safari, edge 등")
     ap.add_argument("--subs-only", action="store_true", help="영상은 받지 않고 자막·메타데이터만")
     ap.add_argument("--yt-dlp", dest="yt_dlp", help="yt-dlp 실행 파일 경로")
-    ap.add_argument("extra", nargs="*", help="`--` 뒤에 붙인 인자는 yt-dlp에 그대로 전달")
-    args = ap.parse_args()
+    args, extra = ap.parse_known_args()  # 모르는 인자(`--` 뒤 포함)는 yt-dlp에 그대로 전달
+    extra = [a for a in extra if a != "--"]
 
     base = yt_dlp_cmd(args.yt_dlp)
     if not base:
@@ -103,7 +103,8 @@ def main() -> int:
         "-P", str(args.outdir),
         "-o", "%(id)s.%(ext)s",
         "--no-simulate",
-        "--print", "after_move:%(id)s",
+        # after_move 단계는 --skip-download일 때 실행되지 않으므로 기본(video) 단계에서 id를 받는다
+        "--print", "%(id)s",
     ]
     if args.subs_only:
         cmd += ["--skip-download"]
@@ -113,7 +114,7 @@ def main() -> int:
         cmd += ["--ffmpeg-location", os.environ["FFMPEG"]]
     if args.cookies_from_browser:
         cmd += ["--cookies-from-browser", args.cookies_from_browser]
-    cmd += js_runtime_args() + args.extra + [args.url]
+    cmd += js_runtime_args() + extra + [args.url]
 
     print("$ " + " ".join(cmd), file=sys.stderr)
     proc = subprocess.run(cmd, stdout=subprocess.PIPE, text=True, encoding="utf-8", errors="replace")
